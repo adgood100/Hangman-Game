@@ -1,0 +1,19 @@
+https://goo.gl/images/o8cVaK
+
+'Eddard Stark',
+'Jaime Lannister', 
+'Khalessi', 
+'Tywin', 
+'Cersei',
+'Varys',
+'Jeor Mormont',
+'Tyrion',
+'Daenerys',
+'Jaquen Hghar',
+'Lady Stark',
+'Littlefinger',
+'The Hound',
+'Ygritte',
+'Brienne'
+'John Snow',
+'Samwell Tarly'

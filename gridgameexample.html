@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Hangman Game</title>
+<!--    <link rel="stylesheet" type="text/css" href="assets/css/page.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css"> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+	<script type="text/javascript" src="assets/javascript/ui.js"></script>
+	<script type="text/javascript" src="assets/javascript/rules.js"></script>
+
+			<!-- Custom CSS -->
+<!--	<link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+</head>
+<body>
+<style type="text/css">
+    @media (orientation: portrait) {
+        #grid { 
+            display: grid;
+            
+            /* The rows, columns and cells of the grid are defined visually using the grid-template property.        */
+            /* Each string is a row, and each letter a cell.  The max number of letters in any one string determines */
+            /* the number of columns. */
+            grid-template: "ta"
+                           "sa"
+                           "bb"
+                           "cc";
+            
+            /* Columns and rows created with the template property can be assigned a sizing function with the */
+            /* grid-columns and grid-rows properties. */
+            grid-columns: auto minmax(min-content, 1fr); 
+            grid-rows: auto auto minmax(min-content, 1fr) auto
+        }
+    }
+
+    @media (orientation: landscape) {
+        #grid { 
+            display: grid;
+            
+            /* Again the template property defines cells of the same name, but this time positioned differently */
+            /* to better suit a landscape orientation. */
+            grid-template: "tb"
+                           "ab"
+                           "sc";
+            
+            grid-columns: auto minmax(min-content, 1fr); 
+            grid-rows: auto minmax(min-content, 1fr) auto
+        }
+    }
+
+    /* The grid-cell property places a grid item into named region (cell) of the grid. */
+    #title    { grid-cell: "t" }
+    #score    { grid-cell: "s" }
+    #stats    { grid-cell: "a" }
+    #board    { grid-cell: "b" }
+    #controls { grid-cell: "c" }
+</style>
+
+<div id="grid">
+    <div id="title">Game Title</div>
+    <div id="score">Score</div>
+    <div id="stats">Stats</div>
+    <div id="board">Board</div>
+    <div id="controls">Controls</div>
+</div>
+</body>
+</html>
