@@ -1,10 +1,15 @@
 var myWins = 0;
 var myLosses = 0;
+var winImage = "";
+var lossImage = "";
+var hintValue = "";
 
 function resetGame () {
 		resetUI();  // 0. Start game and reset reset() from ui
 		gameAnswer = chooseWord();  // 1. chooseWord() from rules
 		console.log('this is the word: ' + gameAnswer);
+		var hintResult = words.indexOf(gameAnswer);
+		chooseHint(hintResult);
 		gameShownAnswer = blanksFromAnswer(gameAnswer);  // 2. show "_" blanksFromAnswer from rules
 		hangmanState = 0;
 		drawWord(gameShownAnswer);    // 3. initialize ui drawWord from ui
@@ -13,6 +18,8 @@ function resetGame () {
 
 $(document).ready(resetGame);
 var audioElement = document.createElement('audio');
+var imageElement = document.createElement('image');
+$("#hint").click(drawHints); 
 
 function win () { 
 	alert('You win! Total wins: ' + myWins);
@@ -96,6 +103,7 @@ function resetUI () {
     $('.shown-letter').remove();
 	$('.shown-wins').remove();
 	$('.shown-losses').remove();
+	$('.shown-hint').remove();
 	drawWins(myWins);
 	drawLosses(myLosses);
 }
@@ -104,6 +112,15 @@ function drawWord( answer ) {
 	$('.word-display').append(
 	    $('<span/>').addClass('shown-letter').html('&nbsp;'));
     }
+}
+function drawHints( hintValue ) {
+    
+	if (hintValue != "") {
+		$('#hint-display').append(
+	    $('<span/>').addClass('shown-hint').text(hintValue));
+		console.log("This is the value for hintValue: " + hintValue);
+	};
+
 }
 function drawWins( myWins ) {
     
@@ -115,6 +132,13 @@ function drawLosses( myLosses ) {
     
 	$('#losses-display').append(
 	    $('<span/>').addClass('shown-losses').text(myLosses));
+    
+}
+function drawPicture( myPicture ) {
+    
+	$('#picture-display').append (
+
+		$('<>').addClass('shown-picture').html(myPicture));
     
 }
 function updateWord( answer ) {
@@ -153,12 +177,37 @@ var words = ['eddard stark',
 			 'john snow', 
 			 'samwell tarly'];
 
+var hints = ['THE MAN WHO PASSES THE SENTENCE SHOULD SWING THE SWORD.',
+			 'THE THINGS I DO FOR LOVE.',
+			 'THE NEXT TIME YOU RAISE A HAND TO ME WILL BE THE LAST TIME YOU HAVE HANDS!',
+			 "IT'S THE FAMILY NAME THAT LIVES ON. IT'S ALL THAT LIVES ON.",
+			 'WHEN YOU PLAY THE GAME OF THRONES, YOU WIN OR YOU DIE.',
+			 'I LEARNED HOW TO DIE A LONG TIME AGO.',
+			 'A DRUNKEN DWARF WILL NEVER BE THE SAVIOR OF THE SEVEN KINGDOMS.',
+			 "I'M NOT GOING TO STOP THE WHEEL. I'M GOING TO BREAK THE WHEEL.",
+			 "A GIRL GIVES A MAN HIS OWN NAME?",
+			 "CHAOS ISN'T A PIT. CHAOS IS A LADDER.",
+			 "I'M GONNA HAVE TO EAT EVERY F--KING CHICKEN IN THIS ROOM.",
+			 'YOU KNOW NOTHING, JON SNOW.',
+			 'THE GOOD LORDS ARE DEAD, AND THE REST ARE MONSTERS.',
+			 'OLLY, BRING ME MY SWORD.',
+			 'HE ALWAYS COMES BACK!'];
+
+			 
 function chooseWord () {
     return words[Math.floor(Math.random() * words.length)];
 }
+function chooseHint (answerHint) {
+//	var hintValue = "";
+	hintValue = hints[answerHint];
+	drawHints(hintValue);
+    console.log("The value of hintValue is: " + hintValue);
+	console.log("The value of answerHint is: " + answerHint);
+}
 
 function blanksFromAnswer ( answerWord ) {  
-    var result = ""; 
+    chooseHint(answerWord);
+	var result = ""; 
     for ( i in answerWord ) {
         if (answerWord.charAt(i) != " ") { 
 			result = "_" + result;
@@ -252,6 +301,7 @@ function guessLetter( letter, shown, answer ) {
       // =================================================================================
 
       // 12. Create an "on-click" event attached to the "#clear" button id.
+	  $("#hint").click(drawHints); 
 	  $("#clear").click(clearButton); 
 	  
 	  function clearButton () {
