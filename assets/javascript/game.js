@@ -21,6 +21,7 @@ $(document).ready(resetGame);
 var audioElement = document.createElement('audio');
 var imageElement = document.createElement('image');
 $("#hint").click(drawHints); 
+$("#shwHint").click(dsplHints); 
 
 function win () { 
 	alert('You win! Total wins: ' + myWins);
@@ -50,6 +51,8 @@ function doKeypress () {
         gameShownAnswer = tempString;
         if ( gameShownAnswer === gameAnswer ) {
             myWins = myWins + 1;
+/*			$( "#toggle" ).attr( "style", "visibility: visible;" ); */
+			dsplWinnerBoard();
 			drawWins(myWins);
 			win();
         }
@@ -65,7 +68,23 @@ function doKeypress () {
 }
 $('#letter-input').keyup( doKeypress );
 
+function dsplWinnerBoard () {
+/*	$( "#toggle" ).attr( "style", "visibility: visible;" ); */
+	$( "#toggle" ).each(function( i ) {
+		console.log("In each loop");
+		if ( this.style.visibility !== "visible" ) {
+			this.style.visibility = "visible";
+		} else {
+			this.style.visibility = "";
+		}
+		});
+}
 
+function dsplHints () {
+	console.log("Entering dsplHints");
+	$("#hint-display").attr( "style", "visibility: visible" ); 
+
+}
 // ---
 // --- control ui ---
 // --- BGN ui ---
@@ -105,8 +124,10 @@ function resetUI () {
 	$('.shown-wins').remove();
 	$('.shown-losses').remove();
 	$('.shown-hint').remove();
+/*	$('.shown-picture').remove(); */
 	drawWins(myWins);
 	drawLosses(myLosses);
+	dsplWinnerBoard();
 }
 function drawWord( answer ) {
     for ( i in answer ) {
@@ -137,9 +158,8 @@ function drawLosses( myLosses ) {
 }
 function drawPicture( myPicture ) {
     
-	$('#hint-display').append (
-
-		$('<div/>').addClass('shown-picture').html(myPicture));
+	$('#picture-display').append (
+		$('<span/>').addClass('shown-picture pull-left').html(myPicture));
     
 }
 function updateWord( answer ) {
@@ -194,21 +214,21 @@ var hints = ['THE MAN WHO PASSES THE SENTENCE SHOULD SWING THE SWORD.',
 			 'OLLY, BRING ME MY SWORD.',
 			 'HE ALWAYS COMES BACK!']; 
 
-var himgs = [' <img src="assets/images/eddardnedstark1280.jpg"> ',
-			 ' <img src="assets/images/jaimelannister512.jpg"> ',
-			 ' <img src="assets/images/daenerystargaryen1280.jpg"> ',
-			 ' <img src="assets/images/tywinlannister1280.jpg"> ',
-			 ' <img src="assets/images/cerseilannister512.jpg"> ',
-			 ' <img src="assets/images/maetservarys1280.jpg"> ',
-			 ' <img src="assets/images/tyrionlannister512.jpg"> ',
-			 ' <img src="assets/images/daenerystargaryen1280.jpg"> ',
-			 ' <img src="assets/images/jaqenhghar1280.jpg"> ',
-			 ' <img src="assets/images/littlefinger512.jpg"> ',
-			 ' <img src="assets/images/thehound512.jpg"> ',
-			 ' <img src="assets/images/ygritte1280.jpg"> ',
-			 ' <img src="assets/images/brienne512.jpg"> ',
-			 ' <img src="assets/images/jonsnow1280.jpg"> ',
-			 ' <img src="assets/images/samwelltarly1280.jpg"> ']; 
+var himgs = [' <img id="toggle" src="assets/images/eddardnedstark1280.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/jaimelannister512.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/daenerystargaryen1280.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/tywinlannister1280.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/cerseilannister512.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/maetservarys1280.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/tyrionlannister512.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/daenerystargaryen1280.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/jaqenhghar1280.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/littlefinger512.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/thehound512.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/ygritte1280.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/brienne512.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/jonsnow1280.jpg" style="visibility: hidden;"> ',
+			 ' <img id="toggle" src="assets/images/samwelltarly1280.jpg" style="visibility: hidden;"> ']; 
 
 			 
 function chooseWord () {
