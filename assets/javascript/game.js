@@ -3,6 +3,7 @@ var myLosses = 0;
 var winImage = "";
 var lossImage = "";
 var hintValue = "";
+var hintPicture = "";
 
 function resetGame () {
 		resetUI();  // 0. Start game and reset reset() from ui
@@ -63,7 +64,7 @@ function doKeypress () {
     }  
 }
 $('#letter-input').keyup( doKeypress );
-//$(".letter-button").click(doKeypress);
+
 
 // ---
 // --- control ui ---
@@ -136,9 +137,9 @@ function drawLosses( myLosses ) {
 }
 function drawPicture( myPicture ) {
     
-	$('#picture-display').append (
+	$('#hint-display').append (
 
-		$('<>').addClass('shown-picture').html(myPicture));
+		$('<div/>').addClass('shown-picture').html(myPicture));
     
 }
 function updateWord( answer ) {
@@ -174,7 +175,7 @@ var words = ['eddard stark',
 			 'the hound', 
 			 'ygritte', 
 			 'brienne', 
-			 'john snow', 
+			 'jon snow', 
 			 'samwell tarly'];
 
 var hints = ['THE MAN WHO PASSES THE SENTENCE SHOULD SWING THE SWORD.',
@@ -191,16 +192,33 @@ var hints = ['THE MAN WHO PASSES THE SENTENCE SHOULD SWING THE SWORD.',
 			 'YOU KNOW NOTHING, JON SNOW.',
 			 'THE GOOD LORDS ARE DEAD, AND THE REST ARE MONSTERS.',
 			 'OLLY, BRING ME MY SWORD.',
-			 'HE ALWAYS COMES BACK!'];
+			 'HE ALWAYS COMES BACK!']; 
+
+var himgs = [' <img src="assets/images/eddardnedstark1280.jpg"> ',
+			 ' <img src="assets/images/jaimelannister512.jpg"> ',
+			 ' <img src="assets/images/daenerystargaryen1280.jpg"> ',
+			 ' <img src="assets/images/tywinlannister1280.jpg"> ',
+			 ' <img src="assets/images/cerseilannister512.jpg"> ',
+			 ' <img src="assets/images/maetservarys1280.jpg"> ',
+			 ' <img src="assets/images/tyrionlannister512.jpg"> ',
+			 ' <img src="assets/images/daenerystargaryen1280.jpg"> ',
+			 ' <img src="assets/images/jaqenhghar1280.jpg"> ',
+			 ' <img src="assets/images/littlefinger512.jpg"> ',
+			 ' <img src="assets/images/thehound512.jpg"> ',
+			 ' <img src="assets/images/ygritte1280.jpg"> ',
+			 ' <img src="assets/images/brienne512.jpg"> ',
+			 ' <img src="assets/images/jonsnow1280.jpg"> ',
+			 ' <img src="assets/images/samwelltarly1280.jpg"> ']; 
 
 			 
 function chooseWord () {
     return words[Math.floor(Math.random() * words.length)];
 }
 function chooseHint (answerHint) {
-//	var hintValue = "";
 	hintValue = hints[answerHint];
+	hintPicture = himgs[answerHint];
 	drawHints(hintValue);
+	drawPicture(hintPicture);
     console.log("The value of hintValue is: " + hintValue);
 	console.log("The value of answerHint is: " + answerHint);
 }
@@ -212,7 +230,7 @@ function blanksFromAnswer ( answerWord ) {
         if (answerWord.charAt(i) != " ") { 
 			result = "_" + result;
 		} else {
-			result = "+" + result;
+			result = " " + result;
 		}
     }
 	console.log("This is the value of result: " + result);
