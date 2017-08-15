@@ -14,6 +14,7 @@ function resetGame () {
 		gameShownAnswer = blanksFromAnswer(gameAnswer);  // 2. show "_" blanksFromAnswer from rules
 		hangmanState = 0;
 		drawWord(gameShownAnswer);    // 3. initialize ui drawWord from ui
+		hideHints();
 }
 //showKeyboard();
 
@@ -69,20 +70,18 @@ function doKeypress () {
 $('#letter-input').keyup( doKeypress );
 
 function dsplWinnerBoard () {
-/*	$( "#toggle" ).attr( "style", "visibility: visible;" ); */
-	$( "#toggle" ).each(function( i ) {
-		console.log("In each loop");
-		if ( this.style.visibility !== "visible" ) {
-			this.style.visibility = "visible";
-		} else {
-			this.style.visibility = "";
-		}
-		});
+	$( "#toggle" ).attr( "style", "visibility: visible;" ); 
+	$("img").removeAttr("style");
 }
 
 function dsplHints () {
 	console.log("Entering dsplHints");
 	$("#hint-display").attr( "style", "visibility: visible" ); 
+
+}
+function hideHints () {
+	console.log("Entering dsplHints");
+	$("#hint-display").attr( "style", "visibility: hidden" ); 
 
 }
 // ---
